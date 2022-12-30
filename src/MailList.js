@@ -15,6 +15,7 @@ import { IconButton } from "@mui/material";
 import React from "react";
 import "./MailList.css";
 import Section from "./Section";
+import EmailRow from "./EmailRow";
 
 function MailList() {
   return (
@@ -53,6 +54,21 @@ function MailList() {
         <Section Icon={Inbox} title="Primary" color="red" selected />
         <Section Icon={People} title="Social" color="#1A73E8" />
         <Section Icon={LocalOffer} title="Promotions" color="green" />
+      </div>
+
+      <div class="mailList__list">
+        <EmailRow
+          title="Twitch"
+          subject="Hey fellow stramer!!!"
+          description="This is a test"
+          time="10pm"
+        />
+        <EmailRow
+          title="Twitch"
+          subject="Hey fellow stramer!!!"
+          description="This is a test"
+          time="10pm"
+        />
       </div>
     </div>
   );
