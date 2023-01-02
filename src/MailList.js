@@ -12,12 +12,28 @@ import {
   Settings,
 } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./MailList.css";
 import Section from "./Section";
 import EmailRow from "./EmailRow";
+import { db } from "./firebase";
 
 function MailList() {
+  const [emails, setEmails] = useState([]);
+
+  useEffect(() => {
+    db.collection("emails")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setEmails(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        );
+      });
+  }, []);
+
   return (
     <div className="mailList">
       <div class="mailList__settings">
@@ -57,16 +73,117 @@ function MailList() {
       </div>
 
       <div class="mailList__list">
+        {emails.map(({ id, data: { to, subject, message, timestamp } }) => (
+          <EmailRow
+            id={id}
+            key={id}
+            title={to}
+            subject={subject}
+            description={message}
+            time={new Date(timestamp?.seconds * 1000).toUTCString()}
+          />
+        ))}
+
         <EmailRow
+          subject="Hello, streamer"
           title="Twitch"
-          subject="Hey fellow stramer!!!"
-          description="This is a test"
+          description="This message is for you"
           time="10pm"
         />
         <EmailRow
+          subject="Hello, streamer"
           title="Twitch"
-          subject="Hey fellow stramer!!!"
-          description="This is a test"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
+          time="10pm"
+        />
+        <EmailRow
+          subject="Hello, streamer"
+          title="Twitch"
+          description="This message is for you"
           time="10pm"
         />
       </div>

@@ -14,11 +14,15 @@ import {
 } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { selectOpenMail } from "./features/mailSlice";
 import "./Mail.css";
 
 function Mail() {
   const navigate = useNavigate();
+
+  const selectedMail = useSelector(selectOpenMail);
 
   return (
     <div className="mail">
@@ -77,14 +81,14 @@ function Mail() {
       </div>
       <div class="mail__body">
         <div class="mail__bodyHeader">
-          <h2>Subject</h2>
+          <h2>{selectedMail?.subject}</h2>
           <LabelImportant className="mail__important" />
-          <p>Title</p>
-          <p className="mail__time">10pm</p>
+          <p>{selectedMail?.title}</p>
+          <p className="mail__time">{selectedMail?.time}</p>
         </div>
 
         <div class="mail__message">
-          <p>This is a message</p>
+          <p>{selectedMail?.description}</p>
         </div>
       </div>
     </div>
